@@ -9458,6 +9458,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7811861456752486339, guid: d8b4787390fea0049b6e11c6e95e9579, type: 3}
+      propertyPath: m_Text
+      value: 0:00.00
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811861456752486339, guid: d8b4787390fea0049b6e11c6e95e9579, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 4
       objectReference: {fileID: 0}
