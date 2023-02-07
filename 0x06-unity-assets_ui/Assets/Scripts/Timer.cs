@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public Text TimerText;
-    public bool playing =false;
+    public bool playing = false;
     private float timer;
 
     void Update()
