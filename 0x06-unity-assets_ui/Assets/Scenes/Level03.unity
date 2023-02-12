@@ -4790,6 +4790,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 505795530963235473, guid: aba388fe5115c764bb88c082dbbfa5f8, type: 3}
+      propertyPath: m_TagString
+      value: WinFlag
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235923191755194629, guid: aba388fe5115c764bb88c082dbbfa5f8, type: 3}
+      propertyPath: m_TagString
+      value: WinFlag
+      objectReference: {fileID: 0}
     - target: {fileID: 6567144195600183744, guid: aba388fe5115c764bb88c082dbbfa5f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.15
