@@ -33,16 +33,9 @@ public class PlayerController : MonoBehaviour
         PlayerMovement.y = directionY;
         cc.Move(PlayerMovement * speed * Time.deltaTime);
 
-        if (transform.position.y < -20)
+        if (transform.position.y < -50)
         {
             death();
-        }
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            
-        }
-        {
-
         }
     }
     void death()
