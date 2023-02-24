@@ -8,6 +8,14 @@ public class Timer : MonoBehaviour
     public Text TimerText;
     public bool playing = false;
     private float timer;
+    void Start()
+    {
+        timer = PlayerPrefs.GetFloat("Timer", 0f);
+    }
+    void OnDestroy()
+    {
+        PlayerPrefs.SetFloat("Timer", timer);
+    }
 
     void Update()
     {
@@ -17,7 +25,7 @@ public class Timer : MonoBehaviour
             int minutes = Mathf.FloorToInt(timer / 60F);
             int seconds = Mathf.FloorToInt(timer % 60F);
             int milliseconds = Mathf.FloorToInt((timer * 100F) % 100F);
-            TimerText.text = minutes.ToString("00") + ":" + seconds.ToString("00") + "." + milliseconds.ToString("00");
+            TimerText.text = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
         }
     }
 }

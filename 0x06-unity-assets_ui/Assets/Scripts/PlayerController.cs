@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -10,8 +12,20 @@ public class PlayerController : MonoBehaviour
     public float Jump = 3.5f;
     public CharacterController cc;
     public GameObject player;
+    public Text timerText;
     private float directionY;
     private float gravity = 9.0f;
+
+    
+    private void Awake()
+    {
+        if (PauseMenu.opts)
+        {
+            player.transform.position = new Vector3(PauseMenu.playerPos.x, PauseMenu.playerPos.y, PauseMenu.playerPos.z);
+            PauseMenu.opts = false;
+        }
+    }
+
 
     void Start()
     {

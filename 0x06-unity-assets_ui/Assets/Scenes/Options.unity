@@ -1754,6 +1754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3121533f34af5314bac6fce1444be2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invertToggle: {fileID: 731384811}
 --- !u!1 &1470901489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2348,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1032819198}
     m_Modifications:
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1193705104}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Apply
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452906724681805635, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6262130571280635741, guid: 53b13f598bf783247bfe78a33de72d8e, type: 3}
       propertyPath: m_Name
       value: ApplyButton
