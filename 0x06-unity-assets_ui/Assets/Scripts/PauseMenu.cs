@@ -18,6 +18,12 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Timer gett = GameObject.Find("TimerCanvas").GetComponent<Timer>();
+            PlayerController gett2 = GameObject.Find("Player").GetComponent<PlayerController>();
+            gett.SaveTime();
+            gett2.SavePosition();
+
+
             if (GameIsPaused)
             {
                 Resume();

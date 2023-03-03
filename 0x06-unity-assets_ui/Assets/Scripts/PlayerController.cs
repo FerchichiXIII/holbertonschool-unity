@@ -15,21 +15,23 @@ public class PlayerController : MonoBehaviour
     public Text timerText;
     private float directionY;
     private float gravity = 9.0f;
+    public GameObject Noob;
 
     
     private void Awake()
     {
-        if (PauseMenu.opts)
+        /*if (PauseMenu.opts)
         {
             player.transform.position = new Vector3(PauseMenu.playerPos.x, PauseMenu.playerPos.y, PauseMenu.playerPos.z);
             PauseMenu.opts = false;
-        }
+        }*/
     }
 
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
     }
 
     void Update()
@@ -51,9 +53,20 @@ public class PlayerController : MonoBehaviour
         {
             death();
         }
+        if (Input.GetKey(KeyCode.N)&& Input.GetKey(KeyCode.O)&& Input.GetKey(KeyCode.B))
+        {
+            Noob.SetActive(true);
+        }
     }
     void death()
     {
         transform.position = new Vector3(0, 100, 0);     
+    }
+
+    public void SavePosition()
+    {
+        PlayerPrefs.SetFloat("PosX", transform.position.x);
+        PlayerPrefs.SetFloat("PosY", transform.position.y);
+        PlayerPrefs.SetFloat("PosZ", transform.position.z);
     }
 }

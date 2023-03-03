@@ -7,6 +7,7 @@ public class TimerTrigger : MonoBehaviour
 {
     public Canvas CanvasObject;
 
+
     public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Finish")
