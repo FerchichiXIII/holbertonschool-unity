@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed;
     public float Jump = 3.5f;
     public CharacterController cc;
     public GameObject player;
@@ -44,6 +44,14 @@ public class PlayerController : MonoBehaviour
         {
             directionY = Jump;
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 20f;
+        }
+        else
+        {
+            speed = 10f;
+        }
         
         directionY -= gravity * Time.deltaTime;
         PlayerMovement.y = directionY;
@@ -53,9 +61,18 @@ public class PlayerController : MonoBehaviour
         {
             death();
         }
-        if (Input.GetKey(KeyCode.N)&& Input.GetKey(KeyCode.O)&& Input.GetKey(KeyCode.B))
+        if (Input.GetKey(KeyCode.N))
         {
-            Noob.SetActive(true);
+            if (Input.GetKey(KeyCode.O))
+            {
+                if (Input.GetKey(KeyCode.O))
+                {
+                    if (Input.GetKey(KeyCode.B))
+                    {
+                        Noob.SetActive(true);
+                    }
+                }
+            }
         }
     }
 
