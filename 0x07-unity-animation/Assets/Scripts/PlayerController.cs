@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
         Vector3 PlayerMovement = new Vector3(x, 0, z);
+        
         //transform.Translate(PlayerMovement);
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
         directionY -= gravity * Time.deltaTime;
         PlayerMovement.y = directionY;
         cc.Move(PlayerMovement * speed * Time.deltaTime);
+       
 
         if (transform.position.y < -50)
         {

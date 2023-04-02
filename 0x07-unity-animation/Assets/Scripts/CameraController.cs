@@ -6,13 +6,13 @@ public class CameraController : MonoBehaviour
 {
     public float Speed = 2f;
     public bool isInverted = false;
-    public Transform player;
-
+    public Transform Player;
+    private Vector3 OffSet;
     public Vector3 turn;
 
     void Start()
     {
-        turn = transform.position - player.position;
+        turn = transform.position - Player.position;
     }
 
     // Update is called once per fram
@@ -21,16 +21,15 @@ public class CameraController : MonoBehaviour
         if (!isInverted)
         {
             turn = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * Speed, Vector3.up) * Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * -Speed, Vector3.left) * turn;
-            transform.position = player.position + turn;
-            transform.LookAt(player.position);
+            transform.position = Player.position + turn;
+            transform.LookAt(Player.position);
         }
         else
         {
             turn = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * Speed, Vector3.up) * Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * Speed, Vector3.left) * turn;
-            transform.position = player.position + turn;
-            transform.LookAt(player.position);
+            transform.position = Player.position + turn;
+            transform.LookAt(Player.position);
 
         }
-
     }
 }
