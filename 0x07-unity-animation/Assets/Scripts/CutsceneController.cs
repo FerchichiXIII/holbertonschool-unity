@@ -7,6 +7,7 @@ public class CutsceneController : MonoBehaviour
     public Camera MainCamera;
     public Canvas TimerCanvas;
     public GameObject Player;
+    
     IEnumerator ActivateObjectAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -14,9 +15,12 @@ public class CutsceneController : MonoBehaviour
         TimerCanvas.gameObject.SetActive(true);
         Player.GetComponent<PlayerController>().enabled = true;
         gameObject.SetActive(false);
+    //    Time.timeScale = 1f;
     }
     private void Start()
     {
         StartCoroutine(ActivateObjectAfterDelay(3));
+        Player.GetComponent<PlayerController>().enabled = false;
+
     }
 }

@@ -9,13 +9,15 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    public float Jump = 3.5f;
+    public float Jump = 5f;
     public CharacterController cc;
     public GameObject player;
     public Text timerText;
     private float directionY;
     private float gravity = 9.0f;
+    private Vector3 moveDirection = Vector3.zero;
     public GameObject Noob;
+    public Animator anim;
 
     
     private void Awake()
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,10 +42,20 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 PlayerMovement = new Vector3(x, 0, z);
-        
-        //transform.Translate(PlayerMovement);
-        if (Input.GetButtonDown("Jump") && cc.isGrounded)
+        Vector3 moveDirection = new Vector3(x, 0, z);
+   
+
+        if (moveDirection.magnitude > 0)
+        {
+            anim.SetBool("Run", true);
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+        }   
+        else
+        {
+            anim.SetBool("Run", false);
+        }
+            //transform.Translate(PlayerMovement);
+            if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
             directionY = Jump;
         }
@@ -56,8 +69,8 @@ public class PlayerController : MonoBehaviour
         }
         
         directionY -= gravity * Time.deltaTime;
-        PlayerMovement.y = directionY;
-        cc.Move(PlayerMovement * speed * Time.deltaTime);
+        moveDirection.y = directionY;
+        cc.Move(moveDirection * speed *Time.deltaTime);
        
 
         if (transform.position.y < -50)

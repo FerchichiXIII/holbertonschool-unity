@@ -6542,6 +6542,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 468b454c17c58564da52223fa4fd663c, type: 3}
   m_PrefabInstance: {fileID: 1606758743}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1440377000 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 153652228451198030, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+  m_PrefabInstance: {fileID: 6002018793052369480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1446861638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8817,6 +8822,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07aa5ad25195c34db4a5fe2d4417a6b, type: 3}
+--- !u!1 &1925071503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6002018791964786633, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+  m_PrefabInstance: {fileID: 6002018793052369480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &1925071504 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 6002018791805248980, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+  m_PrefabInstance: {fileID: 6002018793052369480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1964116918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9843,6 +9858,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6002018791805248980, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: m_Height
+      value: 2.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002018791805248980, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: m_Radius
+      value: 0.39
+      objectReference: {fileID: 0}
     - target: {fileID: 6002018791805248981, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
       propertyPath: TimerText
       value: 
@@ -9860,9 +9883,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 177118537}
     - target: {fileID: 6002018791805248983, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: cc
+      value: 
+      objectReference: {fileID: 1925071504}
+    - target: {fileID: 6002018791805248983, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
       propertyPath: Noob
       value: 
       objectReference: {fileID: 1585065428}
+    - target: {fileID: 6002018791805248983, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1440377000}
+    - target: {fileID: 6002018791805248983, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1925071503}
     - target: {fileID: 6002018791805248983, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
       propertyPath: timerText
       value: 
@@ -9875,6 +9910,10 @@ PrefabInstance:
       propertyPath: TimerCanvas
       value: 
       objectReference: {fileID: 177118537}
+    - target: {fileID: 6107388208930766388, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.107
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
 --- !u!1001 &6567144196194959973
