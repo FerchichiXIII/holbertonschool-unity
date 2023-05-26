@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour
         directionY -= gravity * Time.deltaTime;
         moveDirection.y = directionY;
         cc.Move(moveDirection * speed * Time.deltaTime);
+        if (!cc.isGrounded && transform.position.y < -50)
+        {
+            anim.SetBool("Falling", true);
+        }
+        else if (cc.isGrounded)
+        {
+            anim.SetBool("Falling", false);
+        }
 
 
         if (transform.position.y < -50)
@@ -92,6 +100,7 @@ public class PlayerController : MonoBehaviour
     void death()
     {
         transform.position = new Vector3(0, 100, 0);
+
     }
 
     public void SavePosition()
