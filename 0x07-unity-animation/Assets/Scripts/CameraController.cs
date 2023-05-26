@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         turn = transform.position - Player.position;
+        transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
     }
 
     // Update is called once per fram
@@ -31,5 +32,11 @@ public class CameraController : MonoBehaviour
             transform.LookAt(Player.position);
 
         }
+    }
+    public void SavePosition()
+    {
+        PlayerPrefs.SetFloat("PosX", transform.position.x);
+        PlayerPrefs.SetFloat("PosY", transform.position.y);
+        PlayerPrefs.SetFloat("PosZ", transform.position.z);
     }
 }

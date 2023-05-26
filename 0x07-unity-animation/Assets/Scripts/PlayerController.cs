@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,12 +15,12 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public Text timerText;
     private float directionY;
-    private float gravity = 9.0f;
-    private Vector3 moveDirection = Vector3.zero;
+    private float gravity = 9.8f;
+    //private Vector3 moveDirection = Vector3.zero;
     public GameObject Noob;
     public Animator anim;
 
-    
+
     private void Awake()
     {
         /*if (PauseMenu.opts)
@@ -43,21 +44,26 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(x, 0, z);
-   
+
 
         if (moveDirection.magnitude > 0)
         {
             anim.SetBool("Run", true);
             transform.rotation = Quaternion.LookRotation(moveDirection);
-        }   
+        }
         else
         {
             anim.SetBool("Run", false);
         }
-            //transform.Translate(PlayerMovement);
-            if (Input.GetButtonDown("Jump") && cc.isGrounded)
+        //transform.Translate(PlayerMovement);
+        if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
+            anim.SetBool("Jump", true);  
             directionY = Jump;
+        }
+        else
+        {
+            anim.SetBool("Jump", false);
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -67,36 +73,27 @@ public class PlayerController : MonoBehaviour
         {
             speed = 10f;
         }
-        
+
         directionY -= gravity * Time.deltaTime;
         moveDirection.y = directionY;
-        cc.Move(moveDirection * speed *Time.deltaTime);
-       
+        cc.Move(moveDirection * speed * Time.deltaTime);
+
 
         if (transform.position.y < -50)
         {
             death();
         }
-        if (Input.GetKey(KeyCode.N))
+        if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
-            if (Input.GetKey(KeyCode.O))
-            {
-                if (Input.GetKey(KeyCode.O))
-                {
-                    if (Input.GetKey(KeyCode.B))
-                    {
-                        Noob.SetActive(true);
-                    }
-                }
-            }
+            Noob.SetActive(true);
         }
     }
 
     void death()
     {
-        transform.position = new Vector3(0, 100, 0);     
+        transform.position = new Vector3(0, 100, 0);
     }
-    
+
     public void SavePosition()
     {
         PlayerPrefs.SetFloat("PosX", transform.position.x);
