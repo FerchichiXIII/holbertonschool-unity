@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     //private Vector3 moveDirection = Vector3.zero;
     public GameObject Noob;
     public Animator anim;
+    public GameObject _cam;
+    //public GameObject Ty;
 
 
     private void Awake()
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
-        anim = GetComponent<Animator>();
+        anim = this.transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Update()
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(PlayerMovement);
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
-            anim.SetBool("Jump", true);  
+            anim.SetBool("Jump", true);
             directionY = Jump;
         }
         else
@@ -77,17 +79,29 @@ public class PlayerController : MonoBehaviour
         directionY -= gravity * Time.deltaTime;
         moveDirection.y = directionY;
         cc.Move(moveDirection * speed * Time.deltaTime);
-        if (!cc.isGrounded && transform.position.y < -50)
+       /* if (!cc.isGrounded && transform.position.y < -50)
         {
             anim.SetBool("Falling", true);
+            anim.SetBool("FallingToImpact", false);
         }
         else if (cc.isGrounded)
         {
             anim.SetBool("Falling", false);
+            anim.SetBool("FallingToImpact", true);
+            yield return new WaitForSeconds(3f);
+            anim.SetBool("FallingToImpact", false);
+            anim.SetBool("ImpactToGettingUp", true);
+            cc.radius = 0.39f;
+            cc.height = 2.29f;
+
+
         }
+        else
+            anim.SetBool("ImpactToGettingUp", false);*/
 
 
-        if (transform.position.y < -50)
+
+        if (transform.position.y < -10)
         {
             death();
         }
@@ -99,8 +113,11 @@ public class PlayerController : MonoBehaviour
 
     void death()
     {
-        transform.position = new Vector3(0, 100, 0);
-
+        _cam.transform.parent = this.transform;
+        transform.position = new Vector3(0, 250, 0);
+        //cc.radius = 0.4f;
+        //cc.height = 0.4f;
+        _Death();
     }
 
     public void SavePosition()
@@ -108,5 +125,43 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("PosX", transform.position.x);
         PlayerPrefs.SetFloat("PosY", transform.position.y);
         PlayerPrefs.SetFloat("PosZ", transform.position.z);
+    }
+
+
+    void _Death()
+    {
+        anim.SetBool("Falling", true);
+         StartCoroutine(Wait());
+        //cc.enabled = false;
+        //this.AddComponent<Rigidbody>();
+        /*this.GetComponent<Rigidbody>().mass=100;
+        this.AddComponent<CapsuleCollider>();
+        this.GetComponent<CapsuleCollider>().isTrigger = true;
+        this.GetComponent<CapsuleCollider>().height = 2.2f;*/
+    }
+
+
+   private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "floor")
+        {
+            //anim.SetBool("FallingToImpact", true);
+            anim.SetBool("Falling", false);
+            //this.GetComponent<Rigidbody>().isKinematic=true;
+           // this.transform.position = new Vector3(0,-0.8f,0);    
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        
+        WaitForSeconds xx = new WaitForSeconds(2);
+        yield return xx;
+        anim.SetBool("Falling", false);
+        _cam.transform.parent = null;
+        GetComponent<PlayerController>().enabled = false;
+        yield return new WaitForSeconds(8);
+        GetComponent<PlayerController>().enabled = true;
+
     }
 }
