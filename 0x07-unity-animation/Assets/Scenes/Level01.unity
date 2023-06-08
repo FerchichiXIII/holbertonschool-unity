@@ -9648,6 +9648,10 @@ PrefabInstance:
       propertyPath: TimerCanvas
       value: 
       objectReference: {fileID: 177118537}
+    - target: {fileID: 1155719301954310419, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d7f54a6bbfb981340bdb64ea3e4d8e17, type: 2}
     - target: {fileID: 1155719302051068096, guid: d3a1185f5f0901d47915c9b08a820dae, type: 3}
       propertyPath: m_RootOrder
       value: 4
