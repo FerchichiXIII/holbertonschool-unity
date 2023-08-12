@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public GameObject _cam;
     //public GameObject Ty;
+    public Transform cameraTransform;
 
 
     private void Awake()
@@ -42,10 +43,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = new Vector3(x, 0, z);
+        Vector3 moveDirection = cameraTransform.forward * vertical + cameraTransform.right * horizontal;
+
 
 
         if (moveDirection.magnitude > 0)
