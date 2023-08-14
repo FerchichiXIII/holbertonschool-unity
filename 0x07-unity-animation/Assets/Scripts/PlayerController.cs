@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,16 +9,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3f;
-    public float Jump = 3.5f;
+    public float speed;
+    private float Jump = 3f;
     public CharacterController cc;
     public GameObject player;
     public Text timerText;
     private float directionY;
-    private float gravity = 9.0f;
+    private float gravity = 9.8f;
+    //private Vector3 moveDirection = Vector3.zero;
     public GameObject Noob;
+    //public Animator anim;
+    //public GameObject _cam;
+    //public GameObject Ty;
+    public Transform cameraTransform;
 
-    
+
     private void Awake()
     {
         /*if (PauseMenu.opts)
@@ -32,35 +38,76 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
+        //anim = this.transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 PlayerMovement = new Vector3(x, 0, z);
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 moveDirection = cameraTransform.forward * vertical + cameraTransform.right * horizontal;
+        moveDirection.y = 0;
+
+        if (moveDirection.magnitude > 0)
+        {
+
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+        }
+        
         //transform.Translate(PlayerMovement);
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
             directionY = Jump;
         }
-        
-        directionY -= gravity * Time.deltaTime;
-        PlayerMovement.y = directionY;
-        cc.Move(PlayerMovement * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 20f;
+        }
+        else
+        {
+            speed = 10f;
+        }
 
-        if (transform.position.y < -50)
+        directionY -= gravity * Time.deltaTime;
+        moveDirection.y = directionY;
+        cc.Move(moveDirection * speed * Time.deltaTime);
+        /* if (!cc.isGrounded && transform.position.y < -50)
+         {
+             anim.SetBool("Falling", true);
+             anim.SetBool("FallingToImpact", false);
+         }
+         else if (cc.isGrounded)
+         {
+             anim.SetBool("Falling", false);
+             anim.SetBool("FallingToImpact", true);
+             yield return new WaitForSeconds(3f);
+             anim.SetBool("FallingToImpact", false);
+             anim.SetBool("ImpactToGettingUp", true);
+             cc.radius = 0.39f;
+             cc.height = 2.29f;
+
+
+         }
+         else
+             anim.SetBool("ImpactToGettingUp", false);
+        */
+
+
+
+        if (transform.position.y < -10)
         {
             death();
         }
-        if (Input.GetKey(KeyCode.N)&& Input.GetKey(KeyCode.O)&& Input.GetKey(KeyCode.B))
+        if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
             Noob.SetActive(true);
         }
     }
+
     void death()
     {
-        transform.position = new Vector3(0, 100, 0);     
+        transform.position = new Vector3(0, 250, 0);
     }
 
     public void SavePosition()
@@ -69,4 +116,5 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("PosY", transform.position.y);
         PlayerPrefs.SetFloat("PosZ", transform.position.z);
     }
+
 }
