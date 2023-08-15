@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     //private Vector3 moveDirection = Vector3.zero;
     public GameObject Noob;
     //public Animator anim;
-    //public GameObject _cam;
+    public GameObject _cam;
     //public GameObject Ty;
     public Transform cameraTransform;
     public Animator anim;
@@ -106,9 +106,13 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (transform.position.y < -10)
+        if (player.transform.position.y < -20)
         {
             death();
+        }
+        if (cc.isGrounded)
+        {
+            anim.SetBool("Falling", false);
         }
         if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
@@ -118,14 +122,25 @@ public class PlayerController : MonoBehaviour
 
     void death()
     {
-        transform.position = new Vector3(0, 250, 0);
+        _cam.transform.parent = this.transform;
+        player.transform.position = new Vector3(-2.973412f , 250f, -0.03244859f);
+        //cc.radius = 0.4f;
+        //cc.height = 0.4f;
+        _Death();
+        Debug.Log("mout asba!!!!!!!!!");
     }
+
 
     public void SavePosition()
     {
         PlayerPrefs.SetFloat("PosX", transform.position.x);
         PlayerPrefs.SetFloat("PosY", transform.position.y);
         PlayerPrefs.SetFloat("PosZ", transform.position.z);
+    }
+    void _Death()
+    {
+        anim.SetBool("Falling", true);
+        
     }
 
 }
