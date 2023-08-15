@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject _cam;
     //public GameObject Ty;
     public Transform cameraTransform;
+    public Animator anim;
 
 
     private void Awake()
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
         //anim = this.transform.GetChild(1).GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -51,8 +53,12 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude > 0)
         {
-
             transform.rotation = Quaternion.LookRotation(moveDirection);
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
         }
         
         //transform.Translate(PlayerMovement);

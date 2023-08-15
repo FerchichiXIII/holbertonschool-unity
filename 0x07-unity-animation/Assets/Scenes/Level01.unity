@@ -4342,13 +4342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  Jump: 2.5
   cc: {fileID: 741468314}
   player: {fileID: 741468313}
   timerText: {fileID: 1391622599}
   Noob: {fileID: 1585065428}
   cameraTransform: {fileID: 1127878669}
-  rotationSpeed: 10
+  anim: {fileID: 0}
 --- !u!1001 &751045649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9343,6 +9342,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d07aa5ad25195c34db4a5fe2d4417a6b, type: 3}
   m_PrefabInstance: {fileID: 1875374852}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1920955475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8187546047827892388, guid: 02b8dd7ad17012e42bc39a6ed30d68fe, type: 3}
+  m_PrefabInstance: {fileID: 1965659319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1920955478
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920955475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2029aeb14bfcec94bb42ae5dd546ed5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1964116918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9460,6 +9485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 02b8dd7ad17012e42bc39a6ed30d68fe, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1b6fe1784ee7e914cbb57c88e14da442, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02b8dd7ad17012e42bc39a6ed30d68fe, type: 3}
 --- !u!1 &2005873729
