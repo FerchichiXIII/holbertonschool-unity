@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(moveDirection);
             anim.SetBool("Running", true);
         }
-        else
+        else 
         {
             anim.SetBool("Running", false);
         }
@@ -65,6 +65,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
             directionY = Jump;
+            anim.SetBool("Jump", true);
+        }   
+        else
+        {
+            anim.SetBool("Jump", false);
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {

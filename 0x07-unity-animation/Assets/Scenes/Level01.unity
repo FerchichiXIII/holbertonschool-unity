@@ -4347,7 +4347,12 @@ MonoBehaviour:
   timerText: {fileID: 1391622599}
   Noob: {fileID: 1585065428}
   cameraTransform: {fileID: 1127878669}
-  anim: {fileID: 0}
+  anim: {fileID: 741468320}
+--- !u!95 &741468320 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 02b8dd7ad17012e42bc39a6ed30d68fe, type: 3}
+  m_PrefabInstance: {fileID: 1965659319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &751045649
 PrefabInstance:
   m_ObjectHideFlags: 0
