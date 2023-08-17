@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject Ty;
     public Transform cameraTransform;
     public Animator anim;
+    private Vector3 NewPosY ;
 
 
     private void Awake()
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
-        //anim = this.transform.GetChild(1).GetComponent<Animator>();
         anim = GetComponent<Animator>();
     }
 
@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Running", false);
         }
         
-        //transform.Translate(PlayerMovement);
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
             directionY = Jump;
@@ -71,6 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Jump", false);
         }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 20f;
@@ -83,50 +83,31 @@ public class PlayerController : MonoBehaviour
         directionY -= gravity * Time.deltaTime;
         moveDirection.y = directionY;
         cc.Move(moveDirection * speed * Time.deltaTime);
-        /* if (!cc.isGrounded && transform.position.y < -50)
-         {
-             anim.SetBool("Falling", true);
-             anim.SetBool("FallingToImpact", false);
-         }
-         else if (cc.isGrounded)
-         {
-             anim.SetBool("Falling", false);
-             anim.SetBool("FallingToImpact", true);
-             yield return new WaitForSeconds(3f);
-             anim.SetBool("FallingToImpact", false);
-             anim.SetBool("ImpactToGettingUp", true);
-             cc.radius = 0.39f;
-             cc.height = 2.29f;
 
-
-         }
-         else
-             anim.SetBool("ImpactToGettingUp", false);
-        */
-
-
-
-        if (player.transform.position.y < -20)
+        if (transform.position.y <= -10)
         {
             death();
+            anim.SetBool("Falling", true);
         }
-        if (cc.isGrounded)
+
+      
+        else if (cc.isGrounded)
         {
             anim.SetBool("Falling", false);
+            Debug.Log("toheet !!!!");
         }
         if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
             Noob.SetActive(true);
         }
-    }
+    }   
 
     void death()
     {
+        Debug.Log("nik omek");
         _cam.transform.parent = this.transform;
-        player.transform.position = new Vector3(-2.973412f , 250f, -0.03244859f);
-        //cc.radius = 0.4f;
-        //cc.height = 0.4f;
-        _Death();
+        NewPosY = new Vector3(0 ,250f ,0 );
+        transform.position = NewPosY;
         Debug.Log("mout asba!!!!!!!!!");
     }
 
@@ -137,10 +118,4 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("PosY", transform.position.y);
         PlayerPrefs.SetFloat("PosZ", transform.position.z);
     }
-    void _Death()
-    {
-        anim.SetBool("Falling", true);
-        
-    }
-
 }
