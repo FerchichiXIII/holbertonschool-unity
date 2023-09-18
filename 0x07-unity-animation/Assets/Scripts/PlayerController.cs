@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     void death()
     {
-        Debug.Log("nik omek");
+        
         _cam.transform.parent = this.transform;
         NewPosY = new Vector3(0 ,250f ,0 );
         transform.position = NewPosY;
