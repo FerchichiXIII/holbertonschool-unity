@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         _cam.transform.parent = this.transform;
         NewPosY = new Vector3(0 ,250f ,0 );
         transform.position = NewPosY;
-        Debug.Log("mout asba!!!!!!!!!");
+       
     }
 
 
