@@ -83,15 +83,16 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = directionY;
         cc.Move(moveDirection * speed * Time.deltaTime);
 
-        if (transform.position.y <= -20)
-        {
-            death();
-        }
-
         if (transform.position.y <= -10)
         {
+            death();
             anim.SetBool("Falling", true);
         }
+        else if (cc.isGrounded)
+        {
+            anim.SetBool("Falling", false) ;
+        }
+        
 
         if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
