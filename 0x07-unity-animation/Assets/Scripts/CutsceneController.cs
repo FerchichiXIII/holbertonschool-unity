@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CutsceneController : MonoBehaviour
 {
     public Camera MainCamera;
     public Canvas TimerCanvas;
     public GameObject Player;
-
+    
     IEnumerator ActivateObjectAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -15,7 +15,7 @@ public class CutsceneController : MonoBehaviour
         TimerCanvas.gameObject.SetActive(true);
         Player.GetComponent<PlayerController>().enabled = true;
         gameObject.SetActive(false);
-        //    Time.timeScale = 1f;
+    //    Time.timeScale = 1f;
     }
     private void Start()
     {

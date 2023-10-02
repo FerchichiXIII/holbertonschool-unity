@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     //public GameObject Ty;
     public Transform cameraTransform;
     public Animator anim;
-    private Vector3 NewPosY ;
 
 
     private void Awake()
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
-        anim = GetComponent<Animator>();
+        anim = this.transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Update()
@@ -84,18 +83,16 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = directionY;
         cc.Move(moveDirection * speed * Time.deltaTime);
 
-        if (transform.position.y <= -10)
+        if (transform.position.y <= -20)
         {
             death();
+        }
+
+        if (transform.position.y <= -10)
+        {
             anim.SetBool("Falling", true);
         }
 
-      
-        else if (cc.isGrounded)
-        {
-            anim.SetBool("Falling", false);
-            Debug.Log("toheet !!!!");
-        }
         if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.B))
         {
             Noob.SetActive(true);
@@ -104,11 +101,17 @@ public class PlayerController : MonoBehaviour
 
     void death()
     {
-        Debug.Log("nik omek");
         _cam.transform.parent = this.transform;
-        NewPosY = new Vector3(0 ,250f ,0 );
-        transform.position = NewPosY;
+        transform.position = new Vector3(0 ,250f ,0 );
+        //cc.radius = 0.4f;
+        //cc.height = 0.4f;
+       // _Death();
         Debug.Log("mout asba!!!!!!!!!");
+        _Death();
+        if (cc.isGrounded)
+        {
+            anim.SetBool("Falling", false);
+        }
     }
 
 
@@ -118,4 +121,10 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("PosY", transform.position.y);
         PlayerPrefs.SetFloat("PosZ", transform.position.z);
     }
+    void _Death()
+    {
+            anim.SetBool("Falling", true);
+            Debug.Log("nik omek");
+    }
+
 }
