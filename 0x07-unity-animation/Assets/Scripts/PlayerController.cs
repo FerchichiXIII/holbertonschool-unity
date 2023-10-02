@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             anim.SetBool("Jump", false);
+            anim.SetBool("Falling", true);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
